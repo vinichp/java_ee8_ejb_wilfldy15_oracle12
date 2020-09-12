@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import br.com.vini.dao.AgendamentoDao;
 import br.com.vini.entitiy.DbInfo;
@@ -29,11 +30,11 @@ public class AgendamentoEmailBusiness {
 	}
 
 
-	public void salvarAgendamento(DbInfo dbInfo) {
+	public void salvarAgendamento(@Valid DbInfo dbInfo) {
 
-		if(dbInfo.getVersion() == null) {
-			dbInfo.setVersion("XX");
-		}
+		//if(dbInfo.getVersion() == null) {
+		//	dbInfo.setVersion("XX");
+		//}
 		agendamentoDao.salvarAgendamento(dbInfo);
 	}
 }
