@@ -20,7 +20,7 @@ public class DbInfo {
 	private String name;
 	
 	@Column
-	@NotBlank
+	@NotBlank(message = "{agendamentoEmail.email.vazio}")
 	private String version;
 	
 
