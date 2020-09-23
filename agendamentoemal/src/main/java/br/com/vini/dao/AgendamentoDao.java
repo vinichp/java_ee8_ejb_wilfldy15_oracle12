@@ -23,4 +23,12 @@ public class AgendamentoDao {
 	public void salvarAgendamento(DbInfo dbInfo) {
 		entityManager.persist(dbInfo);
 	}
+	
+	public  List<DbInfo> listarAgendamentoNaoEnviados() {
+		return entityManager.createQuery("select a from DbInfo", DbInfo.class).getResultList();
+	}
+	
+	
+
+	
 }
