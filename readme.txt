@@ -41,7 +41,16 @@ URL para chamar o GET e verificar se conseguiu consultar no banco
 
 
 http://localhost:8080/agendamentoemal-0.0.1-SNAPSHOT/resources/agendamentoemail
- 
+
+Atencao:
+
+Depois que foi feito o redireiconamento no descritor jboss-web.xml
+a URL passou a ser
+http://localhost:8080/resources/agendamentoemail
+
+E para acessar a pagina feita em vue.js que faz a chamada via REST da aplicação 
+acesssar
+http://localhost:8080
 
 4 - URL de teste POST para enviar um JSON que será convertido em DbInfo e persistido no banco
  
