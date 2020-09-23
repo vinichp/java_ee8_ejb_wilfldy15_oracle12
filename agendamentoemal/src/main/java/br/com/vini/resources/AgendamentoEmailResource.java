@@ -1,7 +1,11 @@
 package br.com.vini.resources;
 import java.util.List;
+import java.util.logging.Logger;
 
+import javax.ejb.EJBException;
 import javax.inject.Inject;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,7 +19,8 @@ import br.com.vini.entitiy.DbInfo;
 
 @Path("/agendamentoemail")
 public class AgendamentoEmailResource {
-
+	
+	private static Logger logger = Logger.getLogger(AgendamentoEmailResource.class.getName());
 	@Inject
 	private AgendamentoEmailBusiness agendamentoEmailBusiness;
 	
@@ -31,7 +36,18 @@ public class AgendamentoEmailResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response salvarAgendamento(DbInfo dbInfo) {
 		
+		try {
 		agendamentoEmailBusiness.salvarAgendamento(dbInfo);
+		
+		}catch(EJBException e){
+			if(e.getCause() instanceof ConstraintViolationException) {
+				logger.info("LOGGER : " + e.getMessage()); 
+			}else {
+				logger.severe(e.getMessage());
+			}
+			throw e;
+		}
+		
 		return Response.status(201).build();
 	}
 	
