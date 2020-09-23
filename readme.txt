@@ -62,3 +62,18 @@ http://localhost:8080
 {
     "name":"teste3"
 }
+
+
+
+5 - Configurando um email server no wildlfy
+
+logar no jboss-cli.bat
+e connect
+Os comandos que o instrutor executa são os seguintes:
+
+/subsystem=mail/mail-session=agendamentoMailSession:add(jndi-name=java:jboss/mail/AgendamentoMailSession)
+/socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=my-smtp-binding:add(host=smtp.mailtrap.io, port=2525)
+/subsystem=mail/mail-session=agendamentoMailSession/server=smtp:add(outbound-socket-binding-ref= my-smtp-binding, username=bc82647d48b758, password=6320632ea13bd1, tls=true)
+
+Obs: usar o site mailtrap para fazer um cadastro de um email fake
+https://mailtrap.io/
