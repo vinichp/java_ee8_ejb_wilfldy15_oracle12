@@ -91,3 +91,14 @@ https://mailtrap.io/
  
   jms-queue list-messages --queue-address=EmailQueue
  
+
+
+7 
+A anotacao na classe AgendamentoEmailBusiness
+@TransactionManagement(TransactionManagementType.CONTAINER) eh implicita (se nao declarar eh container tbm)
+Significa que o container vai gerenciar a transacao = CMT
+
+
+Se fosse
+@TransactionManagement(TransactionManagementType.BEAN)
+Caberia ao DEV gerenciar a transacao com tx.begin e tx.commit
