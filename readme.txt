@@ -77,3 +77,13 @@ Os comandos que o instrutor executa são os seguintes:
 
 Obs: usar o site mailtrap para fazer um cadastro de um email fake
 https://mailtrap.io/
+
+
+6 JMS
+ Configurar queue no WILDLFY
+ 
+ connect no jboss-cli.bat
+ 
+ jms-queue add --queue-address=EmailQueue --entries=java:/jms/queue/EmailQueue
+ 
+ 
