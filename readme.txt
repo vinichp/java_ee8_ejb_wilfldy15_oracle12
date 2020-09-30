@@ -87,3 +87,7 @@ https://mailtrap.io/
  jms-queue add --queue-address=EmailQueue --entries=java:/jms/queue/EmailQueue
  
  
+ Para listar o conteudo da fila JMS no console do jboss
+ 
+  jms-queue list-messages --queue-address=EmailQueue
+ 
