@@ -6,6 +6,10 @@ import java.util.Optional;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -18,6 +22,7 @@ import br.com.vini.dao.AgendamentoDao;
 import br.com.vini.entitiy.DbInfo;
 
 @Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class AgendamentoEmailBusiness {
 	
 	@Resource(lookup = "java:jboss/mail/AgendamentoMailSession3")
@@ -56,7 +61,12 @@ public class AgendamentoEmailBusiness {
 		
 	}
 
-
+	//Escopo da transacao NOT SUPPORTED signifca q ele vai ignorar o escopo que chegar aqui
+	//ou seja mesmo que aqui de erro, esse erro nao vai "contaminar" e marcar toda a transacao como rollback
+	//ou seja vai salvar o email no banco mesmo dando erro no envio
+	//
+	//Se trocarmos por REQURIRED, o rollback acontece, desde que seja lançado uma runtimeExcpetion aqui
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public Object enviarAgendamentoEmail(DbInfo dbInfo) {
 		try {
 		    MimeMessage mensagem = new MimeMessage(sessaoEmail);
