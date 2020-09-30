@@ -65,7 +65,7 @@ public class AgendamentoEmailBusiness {
 	//ou seja mesmo que aqui de erro, esse erro nao vai "contaminar" e marcar toda a transacao como rollback
 	//ou seja vai salvar o email no banco mesmo dando erro no envio
 	//
-	//Se trocarmos por REQURIRED, o rollback acontece, desde que seja lançado uma runtimeExcpetion aqui
+	//Se trocarmos por REQURIRED, o rollback acontece, desde que seja lançado uma unchecked exception aqui
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public Object enviarAgendamentoEmail(DbInfo dbInfo) {
 		try {
